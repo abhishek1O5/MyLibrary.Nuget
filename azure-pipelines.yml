@@ -19,22 +19,22 @@ stages:
         command: 'restore'
         projects: '**/*.csproj'
         feedsToUse: 'select'
-
+        vstsFeed: '2c559aac-7dce-441d-9df9-afa1d9ede0a0'
+      
     - task: DotNetCoreCLI@2
       inputs:
         command: 'build'
         projects: '**/*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
-
     - task: DotNetCoreCLI@2
       inputs:
         command: 'pack'
         packagesToPack: '**/*.csproj'
         versioningScheme: 'off'
-
     - task: DotNetCoreCLI@2
       inputs:
         command: 'push'
         packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
         nuGetFeedType: 'internal'
-        publishVstsFeed: 'f50482f5-11a3-4eea-9ab0-2b4c997bd0e2'
+        publishVstsFeed: '2c559aac-7dce-441d-9df9-afa1d9ede0a0'
+    
